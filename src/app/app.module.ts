@@ -11,6 +11,7 @@ import { ProductComponent } from './components/product/product.component';
 import { FormsModule } from '@angular/forms';
 import { ImageStyleDirective } from './Directives/image-style.directive';
 import { CardNumberPipe } from './Pipes/card-number.pipe';
+import { ParentComponentComponent } from './components/parent-component/parent-component.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CardNumberPipe } from './Pipes/card-number.pipe';
     ProductComponent,
     ImageStyleDirective,
     CardNumberPipe,
+    ParentComponentComponent,
 
   ],
   imports: [
