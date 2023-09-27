@@ -1,61 +1,21 @@
-<select [(ngModel)]="selectedCategory">
-    <option *ngFor="let category of categories" [value]="category.id">{{
-        category.name }}</option>
-</select>
-<div class="d-flex justify-content-between align-items-center m-4">
-    <button class="btn btn-primary" (click)="toggleImage()">
-        Show/Hide Logo
-    </button>
-    <div class="store-logo" *ngIf="flagImage">
-        <img class="logo" src="{{storeLogo.logo}}">
-    </div>
-
-</div>
-<div>
-    <h1 class="fs-3 text-center">
-        cardNumber : {{cardNumber|cardNumber}}
-    </h1>
-</div>
-<div>
-    <h1 class="fs-3 text-center">
-        Date : {{date|date}}
-    </h1>
-</div>
-<div *ngIf="isPurshased">
-    <h1 class=" text-center bg-success p-3 text-white fs-3">Thanks for purchasing from our Store {{clintName}} </h1>
-</div>
-
 <div class="row ">
-    <!-- ng container  -->
     <ng-container *ngFor="let prd of productsWithFiltered">
-        <!-- *ngIf=" !(prd.quantity == 0) "-->
-        <div class="col-sm-4 mb-4 position-relative" [class.bg-warning]="prd.quantity == 1" imageStyle
-            property1="9px 11px 17px -16px rgba(66, 68, 90, 1)" property2="6px 6px 55px 0px rgba(66, 68, 90, 1)">
-
-            <img src="{{prd.image}}" class="img-fluid">
+        <div class="col-sm-4 mb-4 position-relative" [class.bg-warning]="prd.quantity == 1">
+            <img src="{{prd.image}}" class="img-fluid" [routerLink]="['/productDetails',prd.id]">
             <img class="product-image" src="{{prd.image}}" alt="">
-            <!-- ng class -->
             <h4 [ngClass]="(prd.price>1000)? 'text-warning':'text-info'">{{prd.name| uppercase}}</h4>
             <h4>{{prd.price|currency}}</h4>
             <h4>
-
                 <ng-container [ngSwitch]="prd.quantity" *ngIf="prd.quantity>0 ;else outReferance">
-                    <!-- <ng-container *ngSwitchCase="0"> out of stock </ng-container> -->
                     <ng-container *ngSwitchCase="1">last one item </ng-container>
                     <ng-container *ngSwitchCase="2">last two items </ng-container>
                     <ng-container *ngSwitchDefault> {{prd.quantity}} in stock </ng-container>
                 </ng-container>
-                <!-- ng-template -->
                 <ng-template #outReferance> out of stock </ng-template>
-
-
             </h4>
-
             <ng-template #outreferance> just small ammount remains </ng-template>
-            <button class="btn btn-danger" [disabled]="prd.quantity==0">Add To Cart</button>
-            <button class="btn btn-danger mx-2" [disabled]="prd.quantity==0" (click)="logo(prd)">Buy
-                Now</button>
+            <button class="btn btn-danger" [disabled]="prd.quantity==0" (click)="addToCart(prd)">Add To Cart</button>
+            <button class="btn btn-danger mx-2" [disabled]="prd.quantity==0" (click)="logo(prd)">Buy Now</button>
         </div>
     </ng-container>
-
 </div>

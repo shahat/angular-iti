@@ -12,6 +12,11 @@ import { FormsModule } from '@angular/forms';
 import { ImageStyleDirective } from './Directives/image-style.directive';
 import { CardNumberPipe } from './Pipes/card-number.pipe';
 import { ParentComponentComponent } from './components/parent-component/parent-component.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { GroupOfRoutesComponent } from './components/group-of-routes/group-of-routes.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,11 @@ import { ParentComponentComponent } from './components/parent-component/parent-c
     ImageStyleDirective,
     CardNumberPipe,
     ParentComponentComponent,
+    AboutUsComponent,
+    ContactsComponent,
+    NotFoundPageComponent,
+    GroupOfRoutesComponent,
+    ProductDetailsComponent,
 
   ],
   imports: [
