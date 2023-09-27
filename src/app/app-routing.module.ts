@@ -36,11 +36,14 @@ const routes: Routes = [
   },
 
   {
-    path: 'productDetails/:id',
+    path: 'productDetails/:prodID',
     component: ProductDetailsComponent,
     title: 'product details page ',
   },
-
+  {
+    path: "user",
+    loadChildren: () => import("./components/user/user.module").then(m => m.UserModule)
+  },
   {
     path: '**',
     component: NotFoundPageComponent,

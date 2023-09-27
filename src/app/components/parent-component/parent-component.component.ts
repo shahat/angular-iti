@@ -28,17 +28,17 @@ export class ParentComponentComponent {
   cart: IProduct[] = [];
 
   cartFun(product: IProduct) {
-    const newProduct = Object.assign(product);
+    // const newProduct = Object.assign(product);
     const checkProduct = this.cart.filter((ele) => ele.id == product.id)[0];
     if (checkProduct) {
       checkProduct.quantity++;
       product.quantity--
-      console.log(checkProduct, product.quantity);
+      // console.log(checkProduct, product.quantity);
     } else {
      const pushedProduct = { ...product };
      pushedProduct.quantity = 1;
       this.cart.push({...pushedProduct});
-      console.log(this.cart)
+      // console.log(this.cart)
       product.quantity--;
     }
   };

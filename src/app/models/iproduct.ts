@@ -7,5 +7,6 @@ export interface IProduct {
     quantity: number;
     categoryID: number;
     image: string;
+    details: string
     // discount: DiscountOffers
 }
