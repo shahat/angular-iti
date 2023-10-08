@@ -1,51 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductsWithApiService } from 'src/app/Servces/products-with-api.service';
 import { Icategory } from 'src/app/models/icategory';
 import { IProduct } from 'src/app/models/iproduct';
 
 @Component({
   selector: 'app-parent-component',
   templateUrl: './parent-component.component.html',
-  styleUrls: ['./parent-component.component.scss']
+  styleUrls: ['./parent-component.component.scss'],
 })
-export class ParentComponentComponent {
-  selectedCategory: number;
-  priceFiltervlaue: any[];
-  searchFilter: string;
-  priceFilter: any[] = [
+export class ProductsListComponent implements OnInit {
 
-    { id: 1, name: [0, 100] },
-    { id: 2, name: [100, 1000] },
-    { id: 3, name: [1000, 2000] },
+  // =====================================  constructor   =====================================  
 
-  ];
+  constructor(private router: Router, public prdAPIservice: ProductsWithApiService) { }
 
-  categories: Icategory[] = [
-    { id: 0, name: "all" },
-    { id: 1, name: 'chair' },
-    { id: 2, name: 'sofa' },
-    { id: 3, name: 'tv-unit' },
-  ];
-  cart: IProduct[] = [];
+  // =====================================  properties  ===================================== 
 
-  cartFun(product: IProduct) {
-    // const newProduct = Object.assign(product);
-    const checkProduct = this.cart.filter((ele) => ele.id == product.id)[0];
-    if (checkProduct) {
-      checkProduct.quantity++;
-      product.quantity--
-      // console.log(checkProduct, product.quantity);
-    } else {
-     const pushedProduct = { ...product };
-     pushedProduct.quantity = 1;
-      this.cart.push({...pushedProduct});
-      // console.log(this.cart)
-      product.quantity--;
-    }
-  };
+  productList: IProduct[] = [];
+  productsWithFiltered: IProduct[] = [];
+  selectedCategory: string = "";
+  priceFilter: any[] = [[0, 100], [101, 1000], [1001, 2500]]
+  categories: Icategory[];
+  priceFiltervlaue: string = "";
 
-  deleteProduct(product: IProduct) {
-    this.cart = this.cart.filter((ele) => ele.id != product.id);
+  // =====================================  input & output ===================================== 
+
+
+  // @Input() set listFilterInChild(value: string) {
+  //   console.log('in setter: ', value);
+  //   this.productsWithFiltered = this.prdAPIservice.performFilter(value);
+  // }
+
+
+  @Output() newPrdEvent: EventEmitter<IProduct> = new EventEmitter<IProduct>();
+  addToCart(product: IProduct) {
+    this.newPrdEvent.emit(product);
+  }
+
+  // ===================================== other methods ===================================== 
+
+  prdDetails(prdID: number) {
+    this.router.navigate(['/ProductDetails', prdID]);
+  }
+
+  ngOnInit(): void {
+    this.prdAPIservice.getAllProducts().subscribe({
+      next: (data) => {
+        console.log(data);
+        this.productsWithFiltered = data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+    this.prdAPIservice.getAllCategory().subscribe({
+      next: (data) => {
+        console.log("category data ", data);
+        this.categories = data;
+      },
+      error: (err) => {
+        console.log("error in fetching category ", err);
+      }
+    })
   }
 }
-
 

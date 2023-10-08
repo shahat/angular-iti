@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/Servces/products.service';
 import { IProduct } from 'src/app/models/iproduct';
+import { ProductsWithApiService } from 'src/app/Servces/products-with-api.service';
 
 @Component({
   selector: 'app-product-details',
@@ -9,43 +10,40 @@ import { IProduct } from 'src/app/models/iproduct';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
+
+  // =====================================  constructor  =====================================  
+
+  constructor(private activatedRoute: ActivatedRoute,
+    private prdService: ProductsService,
+    private prdService1: ProductsWithApiService,
+    private router: Router) { }
+  // =====================================  properties  =====================================  
+
   currentProductID: number = 0;
   product: IProduct | undefined = undefined;
   productsIDSList: number[] = [];
   currentPrdIndex: number = 0;
-  constructor(private activatedRoute: ActivatedRoute, private prdService: ProductsService, private router: Router) { }
+  // =====================================  input & output  =====================================  
+
+  // =====================================  methods  =====================================  
+
   ngOnInit(): void {
 
-
-    // convert to number
-    // parseInt , Number , +
-    // this.currentProductID = (this.activatedRoute.snapshot.paramMap.get('prodID')) ? Number(this.activatedRoute.snapshot.paramMap.get('prodID')) : 0;
-    // console.log(this.currentProductID);
-    // 
-    this.product = this.prdService.getProductByID(this.currentProductID);
-    // git all product list ids
-    this.productsIDSList = this.prdService.getProductIDSList();
-    console.log(this.productsIDSList);
+    this.product = this.prdService.getProductByID(this.currentProductID);//id : 0
+    this.productsIDSList = this.prdService.getProductIDSList();// [ 1, 2, 3 ]
 
     this.activatedRoute.paramMap.subscribe(paramMap => {
       this.currentProductID = (paramMap.get('prodID')) ? Number(paramMap.get('prodID')) : 0;
-      let foundedProduct = this.prdService.getProductByID(this.currentProductID);
+      this.prdService1.getProductByID(this.currentProductID).subscribe((data => {
+        if (data) {
+          this.product = data
+        } else {
+          this.router.navigate(["**"])
+        }
 
-      console.log(foundedProduct)
-      if (foundedProduct) {
-        this.product = foundedProduct;
-      }
-      else {
-        alert("Not Found Product");
-        // this.router.navigate(['**']);
-        this.router.navigate(['/productDetails']);
-      }
+      }))
     })
-
-
-
   }
-
 
   backFunc() {
     this.router.navigate(['/productparent'])

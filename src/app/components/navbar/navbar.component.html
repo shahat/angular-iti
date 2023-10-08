@@ -24,6 +24,8 @@
                     <li class="nav-tab"><a routerLink="/user/login">login</a></li>
                     <li class="nav-tab"><a routerLink="/user/veiwprofile">viewProfile</a></li>
                     <li class="nav-tab"><a routerLink="/user/editprofile">edit profile</a></li>
+                    <li class="nav-tab"><a routerLink="/userLogIn" [hidden]="isLoged">LogIn</a></li>
+                    <li class="nav-tab"><a routerLink="/userLogOut" [hidden]="!isLoged">logout </a></li>
                 </ul>
             </div>
         </nav>

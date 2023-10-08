@@ -11,13 +11,17 @@ import { ProductComponent } from './components/product/product.component';
 import { FormsModule } from '@angular/forms';
 import { ImageStyleDirective } from './Directives/image-style.directive';
 import { CardNumberPipe } from './Pipes/card-number.pipe';
-import { ParentComponentComponent } from './components/parent-component/parent-component.component';
+import { ProductsListComponent } from './components/parent-component/parent-component.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { GroupOfRoutesComponent } from './components/group-of-routes/group-of-routes.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { IProduct } from './models/iproduct';
+import { environment } from 'src/environments/environment.development';
+import { UserAuthComponent } from './components/user-auth/user-auth.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,21 +33,43 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     ProductComponent,
     ImageStyleDirective,
     CardNumberPipe,
-    ParentComponentComponent,
+    ProductsListComponent,
     AboutUsComponent,
     ContactsComponent,
     NotFoundPageComponent,
     GroupOfRoutesComponent,
     ProductDetailsComponent,
+    UserAuthComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+
+  constructor(private httpclient: HttpClient) { }
+
+  getAllProducts(): Observable<IProduct[]> {
+    return this.httpclient.get<IProduct[]>(`${environment.BaseApiURL}/products`);
+  }
+
+  getProductByID(prodID: number): Observable<IProduct> {
+    return this.httpclient.get<IProduct>(`${environment.BaseApiURL}/products/${prodID}`);
+  }
+
+  // query string
+  searchWithMaterial(mat: string): Observable<IProduct[]> {
+
+    return this.httpclient.get<IProduct[]>(`${environment.BaseApiURL}/products?Material=${mat}`)
+  }
+
+
+}
