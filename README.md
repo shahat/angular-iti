@@ -1,2 +1,2 @@
 # angular-iti
-this is all assignment projects that i make in iti 
+this is all assignments  that i make in iti 
