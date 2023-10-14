@@ -6,14 +6,15 @@ import { UserAuthService } from '../../Servces/user-auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
+
 export class NavbarComponent implements OnInit {
   isLoged: boolean = true;
   constructor(private userAuth: UserAuthService) {
     this.isLoged = this.userAuth.isUserLogged;
-  }
+}
 
-  ngOnInit(): void {
-    this.userAuth.getUserLoggedStatus().subscribe({
+ngOnInit(): void {
+this.userAuth.getUserLoggedStatus().subscribe({
       next: (userStatus) => {
         this.isLoged = userStatus;
         console.log("isUser Logged from The nav ", this.isLoged);
@@ -22,6 +23,5 @@ export class NavbarComponent implements OnInit {
         console.log(err);
       }
     })
-
   }
 }

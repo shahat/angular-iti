@@ -10,15 +10,6 @@
       "image": "https://rusticreddoor.com/cdn/shop/products/cherry-wood-dining-chair-ladder-back.jpg?v=1694125456&width=1445"
     },
     {
-      "id": 5,
-      "name": "disk chair",
-      "price": 1500,
-      "quantity": 8,
-      "image": "https://www.ikea.com/eg/en/images/products/millberget-swivel-chair-murum-black__1020142_pe831799_s5.jpg",
-      "categoryID": 1,
-      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quam sint, voluptas praesentium laudantiumrecusandae ullam ipsum illum non molestiae odio.Ad, ipsam voluptate esse earum exercitationem molestias? Magnam,hic!"
-    },
-    {
       "id": 25,
       "name": "sufa-chair",
       "price": 100,
@@ -26,15 +17,6 @@
       "image": "https://images.woodenstreet.de/image/cache/data%2Fchina-furniture%2Fcarolina-lounge-chair-brown%2Fbrown%2FCream%2Fset+images%2Fupdate-15-810x702.jpg",
       "categoryID": 1,
       "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quam sint, voluptas praesentium laudantiumrecusandae ullam ipsum illum non molestiae odio.Ad, ipsam voluptate esse earum exercitationem molestias? Magnam,hic!"
-    },
-    {
-      "id": 7,
-      "name": "L-sofa ",
-      "price": 2000,
-      "quantity": 2,
-      "image": "https://marfytouch.com/wp-content/uploads/2023/03/sofa-004.png",
-      "categoryID": 2,
-      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quam sint, voluptas praesentium laudantirecusandae ullam ipsum illum non molestiae odio.Ad, ipsam voluptate esse earum exercitationem molestias? Magnam,hic!"
     },
     {
       "id": 17,
@@ -64,15 +46,6 @@
       "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quam sint, voluptas praesentium laudantiumrecusandae ullam ipsum illum non molestiae odio.Ad, ipsam voluptate esse earum exercitationem molestias? Magnam,hic!"
     },
     {
-      "id": 15,
-      "name": "Accent TV Unit",
-      "price": 2000,
-      "quantity": 4,
-      "image": "https://media.homecentre.com/i/homecentre/161684469-161684469-HC210519_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp$",
-      "categoryID": 3,
-      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quam sint, voluptas praesentium laudantiumrecusandae ullam ipsum illum non molestiae odio.Ad, ipsam voluptate esse earum exercitationem molestias? Magnam,hic!"
-    },
-    {
       "id": 55,
       "name": "Plymouth TV Unit",
       "price": 100,
@@ -80,6 +53,15 @@
       "image": "https://media.homecentre.com/i/homecentre/163688823-163688823-HC05102021_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-d-sqr-pdp$",
       "categoryID": 3,
       "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quam sint, voluptas praesentium laudantium recusandae ullam ipsum illum non molestiae odio.Ad, ipsam voluptate esse earum exercitationem molestias? Magnam,hic!"
+    },
+    {
+      "name": "sufa 450",
+      "price": 450,
+      "quantity": 450,
+      "image": "https://media.istockphoto.com/id/1186974930/photo/modern-grey-sofa.jpg?s=612x612&w=0&k=20&c=EzinA5NUawgX2eyXYnmFJRgsd5mqLR7eoS5V8jKMiF8=",
+      "categoryID": "2",
+      "details": "kmkmkmk kmkmkmk ",
+      "id": 56
     }
   ],
   "category": [
@@ -94,6 +76,32 @@
     {
       "id": 3,
       "name": "TV unit "
+    }
+  ],
+  "users": [
+    {
+      "firstName": "nader",
+      "lastName": "mohamed",
+      "email": "medo.elshahat@gmail.com",
+      "id": 1
+    },
+    {
+      "firstName": "mohamed",
+      "lastName": "elshahat",
+      "email": "me6847570@gmail.com",
+      "id": 2
+    },
+    {
+      "firstName": "ahmed",
+      "lastName": "ebrahim",
+      "email": "ahmed-ebrahim@gmail.com",
+      "id": 3
+    },
+    {
+      "firstName": "mohamed",
+      "lastName": "elshahat",
+      "email": "mohamed@gmail.com",
+      "id": 4
     }
   ]
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ProductsWithApiService } from 'src/app/Servces/products-with-api.service';
 //import { min } from 'rxjs';
 import { ProductsService } from 'src/app/Servces/products.service';
 import { DiscountOffers } from 'src/app/models/discount-offers';
@@ -14,8 +15,9 @@ import { IProduct } from 'src/app/models/iproduct';
 })
 
 export class ProductComponent implements OnInit {
+  constructor(public prdService: ProductsService,
+    public prdAPIservice: ProductsWithApiService) { }
 
-  constructor(public prdService: ProductsService) { }
 
   productsWithFiltered: IProduct[] = [];
   discount: DiscountOffers;
@@ -38,11 +40,13 @@ export class ProductComponent implements OnInit {
   @Input() set filterByPriceInChild(value) {
 
     console.log(" product with filter in child ", value);
-    
+
     let priceRange = value.split(",");
     let minPrice: number = Number(priceRange[0])
     let maxPrice: number = Number(priceRange[1])
     console.log(minPrice, maxPrice);
+
+
     this.productsWithFiltered = this.prdService.getAllProducts().filter(product => product.price >= minPrice && product.price <= maxPrice)
     console.log(this.productsWithFiltered);
   };
@@ -55,10 +59,30 @@ export class ProductComponent implements OnInit {
 
 
 
+  deletePrd(prd: IProduct) {
+    this.prdAPIservice.deleteProductById(prd.id as number).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.ngOnInit();
+      },
+      error(err) {
+        console.log(err);
 
-  ngOnInit(): void {
-    this.productsWithFiltered = [...this.prdService.getAllProducts()];
+      },
+    })
   }
-
-
+  ngOnInit(): void {
+    this.prdAPIservice.getAllProducts().subscribe({
+      next: (data) => {
+        console.log("this array of the products", data);
+        this.productsWithFiltered = data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
 }
+
+
+

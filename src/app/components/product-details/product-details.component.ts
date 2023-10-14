@@ -53,8 +53,8 @@ export class ProductDetailsComponent implements OnInit {
     this.currentPrdIndex = this.productsIDSList.indexOf(this.currentProductID);
     console.log(this.currentPrdIndex);
     this.router.navigate(['/productDetails', this.productsIDSList[--this.currentPrdIndex]]);
-
   }
+
   nextFunc() {
     this.currentPrdIndex = this.productsIDSList.indexOf(this.currentProductID);
     this.router.navigate(['/productDetails', this.productsIDSList[++this.currentPrdIndex]])

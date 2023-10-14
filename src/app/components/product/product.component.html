@@ -16,6 +16,7 @@
             <ng-template #outreferance> just small ammount remains </ng-template>
             <button class="btn btn-danger" [disabled]="prd.quantity==0" (click)="addToCart(prd)">Add To Cart</button>
             <button class="btn btn-danger mx-2" [disabled]="prd.quantity==0" (click)="logo(prd)">Buy Now</button>
+            <button class="btn btn-danger mx-2" [disabled]="prd.quantity==0" (click)="deletePrd(prd)">Delete</button>
         </div>
     </ng-container>
 </div>

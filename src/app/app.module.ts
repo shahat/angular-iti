@@ -8,7 +8,7 @@ import { MainComponent } from './components/main/main.component';
 import { SecondNavComponent } from './components/second-nav/second-nav.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProductComponent } from './components/product/product.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ImageStyleDirective } from './Directives/image-style.directive';
 import { CardNumberPipe } from './Pipes/card-number.pipe';
 import { ProductsListComponent } from './components/parent-component/parent-component.component';
@@ -22,6 +22,8 @@ import { Observable } from 'rxjs';
 import { IProduct } from './models/iproduct';
 import { environment } from 'src/environments/environment.development';
 import { UserAuthComponent } from './components/user-auth/user-auth.component';
+import { UserReactiveTempletComponent } from './components/users/user-reactive-form/user-reactive-form.component';
+import { AdminComponent } from './components/admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,14 +42,16 @@ import { UserAuthComponent } from './components/user-auth/user-auth.component';
     GroupOfRoutesComponent,
     ProductDetailsComponent,
     UserAuthComponent,
+    UserReactiveTempletComponent,
+    AdminComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    ReactiveFormsModule, // Add ReactiveFormsModule here
   ],
   providers: [],
   bootstrap: [AppComponent]

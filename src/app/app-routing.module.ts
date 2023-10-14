@@ -8,6 +8,11 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { UserAuthComponent } from './components/user-auth/user-auth.component';
+import { UserReactiveTempletComponent } from './components/users/user-reactive-form/user-reactive-form.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { userGuard } from './Guard/user.guard';
+// import { userGuard } from './Guards/user.guard';
+// import { UserTemplateDrivenFormComponent } from './Components/Users/user-template-driven-form/user-template-driven-form.component';
 
 const routes: Routes = [
 
@@ -33,6 +38,7 @@ const routes: Routes = [
     path: 'productparent',
     component: ProductsListComponent,
     title: 'Products Parent Page',
+    canActivate: [userGuard]
   },
   {
     path: 'productDetails/:prodID',
@@ -54,6 +60,17 @@ const routes: Routes = [
 
     title: ' user logout page  ',
   },
+  {
+    path: "UserReactiveForm",
+    component: UserReactiveTempletComponent,
+    title: ' add user   ',
+  },
+  {
+    path: "admin",
+    component: AdminComponent,
+    title: ' admin user   ',
+  },
+
   {
     path: '**',
     component: NotFoundPageComponent,

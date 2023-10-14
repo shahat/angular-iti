@@ -53,4 +53,5 @@ export class ProductsService {
     return this.productList.map(prd => prd.id)
   }
 
+
 }

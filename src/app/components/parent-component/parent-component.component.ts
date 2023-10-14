@@ -37,9 +37,7 @@ export class ProductsListComponent implements OnInit {
   addToCart(product: IProduct) {
     this.newPrdEvent.emit(product);
   }
-
   // ===================================== other methods ===================================== 
-
   prdDetails(prdID: number) {
     this.router.navigate(['/ProductDetails', prdID]);
   }
@@ -47,13 +45,13 @@ export class ProductsListComponent implements OnInit {
   ngOnInit(): void {
     this.prdAPIservice.getAllProducts().subscribe({
       next: (data) => {
-        console.log(data);
         this.productsWithFiltered = data;
       },
       error: (err) => {
         console.log(err);
       }
     });
+
     this.prdAPIservice.getAllCategory().subscribe({
       next: (data) => {
         console.log("category data ", data);
